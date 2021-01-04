@@ -143,8 +143,7 @@ extension VoIPCenter: PKPushRegistryDelegate {
         do {
             let data = try JSONSerialization.data(withJSONObject: payload.dictionaryPayload, options: .prettyPrinted)
             let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            let aps = json?["aps"] as? [String: Any]
-            return aps?["alert"] as? [String: Any]
+            return json
         } catch let error as NSError {
             print("❌ VoIP parsePayload: \(error.localizedDescription)")
             return nil
